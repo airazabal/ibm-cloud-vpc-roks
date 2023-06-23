@@ -1,0 +1,41 @@
+{
+	"name": "roks-cluster",
+	"type": [
+		"terraform_v1.4"
+	],
+	"description": "Deploys a ROKS cluster including prerequisite resources like the VPC, subnets, public gateways and COS",
+	"tags": [
+		""
+	],
+	"template_repo": {
+		"url": "https://github.ibm.com/ramons/ibm-cloud-vpc-roks"
+	},
+	"template_data": [
+		{
+			"folder": ".",
+			"type": "terraform_v1.4",
+			"variablestore": [
+				{
+					"name": "cluster_name",
+					"value": "fulcrum",
+					"type": "string"
+				},
+				{
+					"name": "worker_node_flavor",
+					"value": "bx2.16x64",
+					"type": "string"
+				},
+				{
+					"name": "disable_public_service_endpoint",
+					"value": "true",
+					"type": "bool"
+				},
+				{
+					"name": "addons",
+					"value": "[{\"name\":\"openshift-data-foundation\", \"version\":\"4.7.0\"}]",
+					"type": "list(object({name = string version = string}))"
+				}
+			]
+		}
+	]
+}
